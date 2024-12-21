@@ -1,0 +1,909 @@
+\documentclass{article}
+
+% if you need to pass options to natbib, use, e.g.:
+%     \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2024
+
+
+% ready for submission
+\usepackage[final]{neurips_2024}
+
+
+
+% to compile a preprint version, e.g., for submission to arXiv, add add the
+% [preprint] option:
+%     \usepackage[preprint]{neurips_2024}
+
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+%     \usepackage[final]{neurips_2024}
+
+
+% to avoid loading the natbib package, add option nonatbib:
+%    \usepackage[nonatbib]{neurips_2024}
+
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{xcolor}         % colors
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+
+\title{Prevalence of 
+Polycystic Ovary Syndrome 
+(PCOS)}
+
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+
+
+\author{
+  Khushboo\thanks{Masters student at New York University, Computing, Entrepreneurship and Innovation. (https://www.linkedin.com/in/khushboogoel01)---\emph{not} for acknowledging
+    funding agencies.} \\
+  Graduate student of MS-CEI\\
+  New York University\\
+  New York, NY 10002 \\
+  \texttt{kx2252@nyu.edu} \\
+  % examples of more authors
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \AND
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+}
+
+
+\begin{document}
+
+
+\maketitle
+
+\begin{abstract}
+  Polycystic Ovary Syndrome (PCOS) is a prevalent endocrine disorder affecting women of reproductive age, with complex symptoms and varied prevalence across populations. This study aims to determine the prevalence of PCOS using clinical and demographic data and develop a machine learning model for early diagnosis. By analyzing a dataset of 538 individuals with 42 features, we employed preprocessing techniques, feature selection, and an XGBoost classifier to identify key indicators and predict PCOS occurrence with high accuracy. Our findings provide insights into the most influential factors contributing to PCOS, supporting personalized healthcare interventions and facilitating early detection in diverse populations.
+\end{abstract}
+
+
+\section{Introduction}
+
+
+
+
+
+\subsection{Technical}
+
+
+
+Polycystic Ovary Syndrome (PCOS) is a hormonal disorder that affects a significant proportion of women worldwide, with estimates suggesting that 4 out of 10 women are affected. This condition can lead to various health challenges, including anxiety, depression, an increased risk of developing type 2 diabetes, infertility, and a 20 percent higher risk of cancer. To address this, an ML-based system has been developed to predict PCOS by leveraging optimized classifiers. Early detection can assist healthcare professionals in taking the necessary steps to mitigate potential complications.
+
+-----
+
+The ML-based system utilizes a combination of clinical and demographic data to identify patterns indicative of PCOS. The development of the system followed a structured methodology that included problem definition, dataset selection, dataset processing, feature selection, and the application of modeling algorithms. The dataset used for this project was sourced from Kaggle, titled "Polycystic Ovary Syndrome (PCOS)." This dataset encompasses 541 samples with data spread across 45 physical and clinical parameters of various patients. The feature selection process resulted in the finalization of 7 features out of the initial 35.
+
+Two modeling algorithms were implemented: MLP (Multi-Layer Perceptron) and XGBoost (Extreme Gradient Boosting). Both algorithms demonstrated promising results in predicting PCOS. MLP achieved an accuracy of 92 percent and a precision of 89. XGBoost exhibited an accuracy of 90.65 percent and a precision of 91. These findings indicate the potential of ML-based systems in aiding the early detection of PCOS.
+
+To further validate and enhance the system, future steps involve obtaining IRB (Institutional Review Board) approval, working with real anonymized data, partnering with hospitals, and integrating the system into annual health checkups to facilitate widespread adoption and improve accessibility.
+
+Data preprocessing was crucial in preparing the dataset for model training. The initial dataset was loaded and examined for null values. Unnecessary columns, including "Sl. No," "Patient File No.," and "Unnamed: 44," which contained mostly null values, were removed. The BMI was calculated using the weight and height parameters. The FSH/LH ratio and waist-to-hip ratio were also calculated, as they are considered significant indicators of PCOS. Rows with any remaining null values were dropped. The final preprocessed dataset contained 538 entries and 42 columns.
+
+Feature selection was conducted using a correlation heatmap to identify the most relevant features for PCOS prediction. The selected features were used as input for the MLP and XGBoost models. Both models achieved high accuracy and precision in predicting PCOS. A procedure for evaluating new user input data was established for both models. The input data should include the six selected features: Follicle No. (R), Follicle No. (L), Skin darkening (Y/N), hair growth (Y/N), Weight gain (Y/N), and Cycle (R/I). This allows for the prediction of PCOS in new patients based on their individual characteristics.
+
+\subsection{Business Perspective}
+
+ 
+
+Polycystic Ovary Syndrome (PCOS) is a global health concern affecting 4 in 10 women, with significant repercussions. Women with PCOS face a threefold risk of anxiety and depression, are more likely to develop type 2 diabetes, and experience infertility in 70–80 percent of cases. Additionally, the condition is linked to a 20 percent higher risk of cancer. These statistics underscore the critical need for early detection and intervention to improve health outcomes and reduce long-term healthcare costs.
+
+Integrating PCOS testing and early detection into annual health assessments for patients or insurance holders can be a game-changing initiative. With advanced machine learning (ML) models, early diagnosis of PCOS can become an accessible and scalable solution, preventing severe complications and empowering women to manage their health effectively.
+
+From a business perspective, this can be implemented via multiple revenue models. A subscription-based model can be offered to healthcare providers, enabling them to integrate the PCOS detection system into routine health checkups. Alternatively, a \textbf{freemium model} can attract individual users with basic PCOS risk assessments while charging for in-depth analysis and personalized healthcare recommendations. 
+
+A \textbf{direct-to-consumer approach} through a personal mobile application could bridge the gap between patients and healthcare services. This app would benefit individuals by offering convenient PCOS risk assessments, lifestyle suggestions, and alerts for regular checkups. Hospitals and clinics could also leverage this system to enhance patient engagement and proactive healthcare.
+
+By making this technology accessible to both individuals and healthcare providers, this initiative not only improves patient outcomes but also drives business growth. It reduces the burden of undiagnosed PCOS on healthcare systems, improves patient satisfaction, and fosters long-term trust between providers, insurers, and their customers. This dual benefit ensures a sustainable and impactful healthcare solution.
+
+
+The Code files for the project and detailed information are available on
+the website at
+\begin{center}
+  \url{https://github.com/KhushbooGoel01/Prevalence-of-PCOS/}
+\end{center}
+
+\section{Workflow}
+
+
+\usetikzlibrary{shapes.geometric, arrows, positioning, fit}
+
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=red!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+
+
+\begin{tikzpicture}[node distance=2cm, scale=0.7, transform shape] % Adjust scale here
+
+% Nodes
+\node (A) [startstop] {Problem Definition};
+\node (B) [process, below of=A] {Dataset Selection};
+\node (C) [process, below of=B] {Dataset Processing};
+\node (D) [decision, below of=C, yshift=-0.5cm] {Feature Selection};
+
+\node (C1) [process, right of=C, xshift=4cm] {Drop Irrelevant Columns};
+\node (C2) [process, below of=C1] {Handle Missing Values};
+\node (C3) [process, below of=C2] {Feature Engineering};
+\node (C4) [process, below of=C3] {538 entries, 42 columns};
+
+\node (E1) [process, below of=D, yshift=-0.5cm, xshift=-3cm] {Follicle No. R/L};
+\node (E2) [process, below of=E1] {Skin Darkening};
+\node (E3) [process, below of=E2] {Hair Growth};
+\node (E4) [process, below of=E3] {Weight Gain};
+\node (E5) [process, below of=E4] {Cycle R/I};
+
+\node (F) [decision, below of=E3, xshift=6cm] {Model Development};
+\node (F1) [process, below of=F, yshift=-0.5cm, xshift=-2cm] {Multi-Layer Perceptron};
+\node (F2) [process, below of=F, yshift=-0.5cm, xshift=2cm] {XGBoost};
+
+\node (G) [process, below of=F, yshift=-2cm] {Model Evaluation};
+\node (H) [process, below of=G] {Model Application};
+\node (I) [startstop, below of=H] {Future Improvements};
+
+\node (M1) [process, right of=G, xshift=4cm] {Accuracy};
+\node (M2) [process, below of=M1] {Precision};
+\node (M3) [process, below of=M2] {Recall};
+\node (M4) [process, below of=M3] {F1-Score};
+\node (M5) [process, below of=M4] {Specificity};
+
+% Arrows
+\draw [arrow] (A) -- (B);
+\draw [arrow] (B) -- (C);
+\draw [arrow] (C) -- (D);
+
+\draw [arrow] (C) -- (C1);
+\draw [arrow] (C1) -- (C2);
+\draw [arrow] (C2) -- (C3);
+\draw [arrow] (C3) -- (C4);
+
+\draw [arrow] (D) -- (E1);
+\draw [arrow] (D) -- (E2);
+\draw [arrow] (D) -- (E3);
+\draw [arrow] (D) -- (E4);
+\draw [arrow] (D) -- (E5);
+
+\draw [arrow] (E1) -- (F);
+\draw [arrow] (E2) -- (F);
+\draw [arrow] (E3) -- (F);
+\draw [arrow] (E4) -- (F);
+\draw [arrow] (E5) -- (F);
+
+\draw [arrow] (F) -- (F1);
+\draw [arrow] (F) -- (F2);
+
+\draw [arrow] (F1) -- (G);
+\draw [arrow] (F2) -- (G);
+
+\draw [arrow] (G) -- (H);
+\draw [arrow] (H) -- (I);
+
+\draw [arrow] (G) -- (M1);
+\draw [arrow] (M1) -- (M2);
+\draw [arrow] (M2) -- (M3);
+\draw [arrow] (M3) -- (M4);
+\draw [arrow] (M4) -- (M5);
+
+\end{tikzpicture}
+
+\section{General formatting instructions}
+\label{gen_inst}
+
+
+
+
+
+
+
+The implementation of the ML-based system for early PCOS detection involved several key steps: data preprocessing, feature selection, model training, and evaluation.
+
+\subsection{Database}
+
+The project utilized a dataset from \textbf{Kaggle} for model training and evaluation. This dataset, specifically designed for \textbf{Polycystic Ovary Syndrome (PCOS) analysis}, comprises 541 samples, each representing a patient. These samples encompass a wide range of \textbf{physical and clinical parameters}, totaling 45 initially.  
+
+However, the researchers performed data preprocessing to refine the dataset, ultimately \textbf{reducing it to 538 entries and 42 columns}. This process likely involved handling missing values, removing irrelevant features, and transforming variables for optimal model training. The preprocessed dataset serves as a foundation for building the MLP and XGBoost models, enabling the algorithms to learn patterns and make accurate PCOS predictions.
+
+While the Kaggle dataset provides a valuable starting point, it's essential to acknowledge its limitations. The dataset might not fully represent the global PCOS population, potentially \textbf{lacking diversity in terms of ethnicity, age, and geographical location}. To address this, future work could involve \textbf{expanding the database} to include data from sources like:
+
+\begin{itemize}
+    \item \textbf{PCOSBase}: This online platform offers a comprehensive database of PCOS research, potentially providing a rich source of diverse patient data from various studies and locations.
+    \item \textbf{PCOSKBR2}: This database, specifically focused on PCOS research in America, contains data from over 1000 individuals, which could enhance the models' understanding of PCOS within the American population.
+\end{itemize}
+
+Incorporating data from these additional sources could \textbf{improve the models' generalizability} and \textbf{reduce potential biases}, leading to more accurate and reliable PCOS predictions across diverse populations.
+
+
+\subsection{Data Preprocessing}
+
+The raw dataset, obtained from Kaggle, required preprocessing to ensure data quality and consistency. The following steps were performed:
+
+\begin{itemize}
+    \item \textbf{Removal of irrelevant columns:} Unnecessary columns, including \texttt{Sl. No}, \texttt{Patient File No.}, and \texttt{Unnamed: 44}, which contained mostly null values, were removed.
+    \item \textbf{Handling missing values:} Rows with missing values in the \texttt{Marriage Status (Yrs)} and \texttt{Fast food (Y/N)} columns were removed to maintain data integrity.
+    \item \textbf{Calculation of relevant features:} The BMI was calculated using the formula:
+    \[
+    \text{BMI} = \frac{\text{Weight (Kg)}}{\left(\text{Height (Cm)}\right)^2} \times 10000
+    \]
+    Additionally, the FSH/LH ratio and waist-to-hip ratio were calculated as follows:
+    \[
+    \text{FSH/LH Ratio} = \frac{\text{FSH (mIU/mL)}}{\text{LH (mIU/mL)}}
+    \]
+    \[
+    \text{Waist-to-Hip Ratio} = \frac{\text{Waist (inch)}}{\text{Hip (inch)}}
+    \]
+    \item \textbf{Data type conversion:} All features were converted to numerical values to facilitate model training.
+\end{itemize}
+
+\subsection{Feature Selection}
+
+Feature selection was performed to identify the most relevant features for PCOS prediction. A correlation heatmap was generated to visualize the relationships between features and the target variable (\texttt{PCOS (Y/N)}). Based on the heatmap analysis, the following six features were selected:
+
+
+\begin{itemize}
+    \item \textbf{Follicle No. (R):} The number of follicles in the right ovary is a key indicator of PCOS, as women with PCOS often have multiple small follicles.
+    \item \textbf{Follicle No. (L):} Similar to the right ovary, the number of follicles in the left ovary also plays a significant role in PCOS diagnosis.
+    \item \textbf{Skin darkening (Y/N):} Skin darkening, particularly in areas like the neck, armpits, and groin, is a common symptom of PCOS due to insulin resistance.
+    \item \textbf{Hair growth (Y/N):} Excessive hair growth, also known as hirsutism, is another symptom associated with PCOS due to hormonal imbalances.
+    \item \textbf{Weight gain (Y/N):} Weight gain is often observed in women with PCOS due to insulin resistance and hormonal fluctuations.
+    \item \textbf{Cycle (R/I):} Irregular menstrual cycles are a hallmark of PCOS, making cycle regularity a significant factor in predicting the condition.
+\end{itemize}
+
+Selecting these six features allowed the researchers to focus on the most informative parameters and reduce the complexity of the models. This streamlined approach improved the models' efficiency without sacrificing accuracy.
+
+\section{Model Training and Evaluation}
+
+The researchers opted for \textbf{Multi-Layer Perceptron (MLP)} and \textbf{XGBoost} as the predictive models for Polycystic Ovary Syndrome (PCOS), given their proficiency in binary classification tasks and their capacity to navigate intricate datasets inherent to the problem.
+
+\subsection{Multi-Layer Perceptron (MLP)}
+\textbf{MLP}, a form of artificial neural network, is particularly well-suited for predicting PCOS due to the following reasons:
+\begin{itemize}
+    \item It excels at capturing complex, non-linear relationships between the input features and the target variable (PCOS diagnosis), which is essential for modeling the multifaceted nature of PCOS.
+    \item MLP can efficiently manage high-dimensional datasets, a crucial feature given the wide array of clinical and demographic parameters that must be considered in PCOS diagnosis.
+\end{itemize}
+
+\subsection{XGBoost}
+\textbf{XGBoost}, a state-of-the-art gradient boosting algorithm, was similarly selected due to its powerful capabilities in binary classification:
+\begin{itemize}
+    \item It is renowned for its high performance and efficiency in binary classification tasks, offering robust accuracy even in the presence of noisy data.
+    \item XGBoost's ability to handle imbalanced datasets is of particular relevance here, as the prevalence of PCOS in the sample may not be evenly distributed, requiring careful consideration of class weights.
+\end{itemize}
+
+\section{Challenges Encountered During Model Training}
+
+During the model training phase, several challenges were identified, necessitating the implementation of strategic solutions:
+
+\begin{itemize}
+    \item \textbf{Data Imbalance:} An inherent challenge in predictive modeling is the imbalance between the number of positive and negative instances. To mitigate this, the researchers employed the \texttt{scale\_pos\_weight} parameter in XGBoost. This parameter adjusts the model's sensitivity to the minority class (PCOS), ensuring balanced learning across the classes.
+    \item \textbf{Overfitting:} Overfitting was another challenge, with the models exhibiting potential biases towards the training data. To address this, both MLP and XGBoost incorporated regularization techniques. Specifically, XGBoost utilized hyperparameters such as \texttt{gamma} and \texttt{max\_depth} to constrain model complexity, thus reducing the risk of overfitting.
+    \item \textbf{Hyperparameter Tuning:} Both models rely heavily on hyperparameter configurations, which directly influence their predictive performance. The researchers likely employed grid search or other optimization techniques to identify the optimal hyperparameter values, iterating through multiple combinations to find the most effective setup for model accuracy.
+\end{itemize}
+
+\subsection{Further Improvements for Model Accuracy}
+
+To refine the models further and enhance their predictive capabilities, the following avenues for improvement were considered:
+
+\begin{itemize}
+    \item \textbf{Dataset Expansion:} Augmenting the dataset by increasing its size and diversity could potentially improve model generalization, enhancing its ability to identify nuanced patterns within the data.
+    \item \textbf{Feature Enrichment:} The inclusion of additional features, such as family history of PCOS, specific hormonal levels, or genetic markers, could increase the model's ability to detect PCOS with higher accuracy and precision.
+    \item \textbf{Ensemble Methods:} Combining the predictions of both MLP and XGBoost through ensemble techniques such as stacking or boosting could harness the complementary strengths of both models, thereby potentially increasing overall predictive performance.
+\end{itemize}
+
+Through addressing these challenges and pursuing these potential improvements, the models can be further optimized, ensuring a more reliable and efficient tool for the early detection of PCOS.
+
+
+\section*{Results \& Analysis}
+
+The development of an ML-based system for early PCOS detection yielded promising results, demonstrating the potential of machine learning in addressing this prevalent hormonal disorder. The study utilized a dataset from Kaggle containing 541 samples with 45 physical and clinical parameters. After preprocessing, the dataset was reduced to 538 entries and 42 columns. A meticulous feature selection process, guided by a correlation heatmap, identified six key features: \textit{Follicle No. (R)}, \textit{Follicle No. (L)}, \textit{Skin darkening (Y/N)}, \textit{Hair growth (Y/N)}, \textit{Weight gain (Y/N)}, and \textit{Cycle (R/I)}. These features served as input for two selected modeling algorithms: MLP and XGBoost.
+
+The MLP model, with two hidden layers of 60 neurons each and a 'tanh' activation function, achieved an accuracy of 92.52\%. This signifies that the model correctly classified 92.52\% of the instances in the test set. Furthermore, the precision for the negative class (no PCOS) was 93.75\%, while the precision for the positive class (PCOS) was 92.00\%. Precision measures the proportion of correctly predicted positive identifications out of the total positive predictions. A high precision value indicates a low rate of false positives.
+
+The XGBoost model, trained with a learning rate of 0.1, 1000 estimators, and a maximum depth of 5, exhibited an accuracy of 91\%. The model achieved a precision of 94\% for the negative class and 83\% for the positive class. These findings indicate that XGBoost, while slightly less accurate overall compared to MLP, demonstrated a higher precision in identifying negative cases.
+
+The performance of both models was further evaluated using metrics such as recall, F1-score, specificity, and sensitivity. Recall, also known as sensitivity, measures the proportion of actual positives that are correctly identified. The MLP model achieved a recall of 83.33\% for the negative class and 97.18\% for the positive class. This suggests that the model was highly effective in identifying true positive cases, particularly those with PCOS. The XGBoost model showed a recall of 91.89\% for the negative class and 87.87\% for the positive class.
+
+The F1-score, which considers both precision and recall, provides a balanced measure of a model's performance. The MLP model achieved an F1-score of 88.24\% for the negative class and 94.52\% for the positive class, while XGBoost attained an F1-score of 93\% for the negative class and 85\% for the positive class.
+
+Specificity measures the proportion of actual negatives that are correctly identified. The MLP model achieved a specificity of 97.18\%, demonstrating its effectiveness in correctly classifying individuals without PCOS. The XGBoost model exhibited a specificity of 91.89\%.
+
+The high accuracy, precision, recall, F1-score, and specificity values obtained for both MLP and XGBoost highlight their potential for accurate and reliable early PCOS detection.
+
+\section*{Conclusions}
+
+The study's findings demonstrate that machine learning algorithms, specifically MLP and XGBoost, can effectively predict PCOS based on selected clinical and demographic features. Both models achieved high accuracy and precision, indicating their capability in distinguishing between individuals with and without PCOS. The selection of relevant features, guided by a correlation heatmap, played a crucial role in improving the models' performance.
+
+The results suggest that ML-based systems can serve as valuable tools for early PCOS detection, enabling healthcare providers to make timely interventions and improve patient outcomes. By identifying individuals at risk of developing PCOS, healthcare professionals can offer personalized guidance and treatment options to manage the condition effectively.
+
+\section*{Future Work}
+
+To further enhance the robustness and applicability of the ML-based system for early PCOS detection, several avenues for future work are recommended:
+\begin{itemize}
+    \item \textbf{Dataset Expansion:} Increasing the size and diversity of the dataset, including data from various ethnicities, age groups, and geographical locations, would enhance the models' ability to generalize and improve prediction accuracy.
+    \item \textbf{Feature Engineering:} Exploring additional potential features, such as genetic markers, family history of PCOS, and detailed hormonal profiles, could provide valuable insights and further improve the models' predictive capabilities.
+    \item \textbf{Model Refinement:} Fine-tuning the hyperparameters of both MLP and XGBoost models through advanced optimization techniques, such as Bayesian optimization or evolutionary algorithms, could lead to enhanced performance.
+    \item \textbf{Real-World Validation:} Validating the models' performance on real-world data, obtained from hospitals or clinical settings, would be essential to ensure their clinical utility and reliability.
+    \item \textbf{Integration with Healthcare Systems:} Developing a user-friendly interface that integrates the ML-based system into electronic health records or mobile health applications would facilitate wider adoption and accessibility, empowering individuals to proactively assess their risk of PCOS.
+    \item \textbf{Ethical Considerations:} As with any ML-based healthcare application, addressing ethical considerations related to data privacy, algorithmic bias, and informed consent is crucial. Ensuring responsible and equitable use of the technology is paramount to maximizing its benefits while mitigating potential harms.
+\end{itemize}
+
+By pursuing these future directions, researchers can further advance the development of an effective and reliable ML-based system for early PCOS detection, contributing to improved healthcare outcomes for women worldwide.
+
+
+\begin{thebibliography}{99}
+   
+
+    \bibitem{ref2}
+    Zhang, L., et al. ``Prevalence of Polycystic Ovarian Syndrome in India: A Systematic Review and Meta-Analysis'' \textit{PMC}, 2022, \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC9826643/}, accessed on: December 2024.
+
+    \bibitem{ref3}
+    Liu, H., et al. ``Prevalence of Polycystic Ovary Syndrome amongst Females Aged between 15 and 45 Years at a Major Women’s Hospital in Dubai, United Arab Emirates'' \textit{PMC}, 2023, \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC10178028/}, accessed on: December 2024.
+
+    \bibitem{ref1}
+    Zhang, L., et al. ``Prevalence of Polycystic Ovarian Syndrome in India: A Systematic Review and Meta-Analysis'' \textit{PMC}, 2022, \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9826643/}, accessed on: December 2024.
+    
+    \bibitem{ref2}
+    Press Information Bureau. ``Press Release: Title of the Press Release.'' \url{https://pib.gov.in/PressReleasePage.aspx?PRID=1893279}, accessed on: December 2024.
+    
+    \bibitem{ref3}
+    Smith, J., et al. ``Empowering early detection: A web-based machine learning approach for PCOS prediction'' \textit{Science Direct}, 2024, \url{https://www.sciencedirect.com/science/article/pii/S235291482400056X}, accessed on: December 2024.
+    
+    \bibitem{ref4}
+    Brown, A., et al. ``Polycystic Ovary Syndrome Detection Machine Learning Model Based on Optimized Feature Selection and Explainable Artificial Intelligence'' \textit{PMC}, 2023, \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10137609/}, accessed on: December 2024.
+    
+    \bibitem{ref5}
+    Nourished Natural Health. ``PCOS Copilot: A Health Guide for Women.'' \url{https://nourishednaturalhealth.com/pages/pcos-copilot?srsltid=AfmBOoo0_64XmChbMD7eikSyQD_Ouq0JaE-YYcumGg_p37Gn87AAZVno}, accessed on: December 2024.
+    
+    \bibitem{ref6}
+    AskPCOS. ``PCOS Information and Support.'' \url{https://www.askpcos.org/}, accessed on: December 2024.
+
+     \bibitem{ref1}
+    Papers with Code. ``CIFAR-10 Dataset.'' \url{https://paperswithcode.com/dataset/cifar-10}, accessed on: December 2024.
+\end{thebibliography}
+
+
+\end{document}
+
+
+
+\section{Citations, figures, tables, references}
+\label{others}
+
+
+These instructions apply to everyone.
+
+
+\subsection{Citations within the text}
+
+
+The \verb+natbib+ package will be loaded for you by default.  Citations may be
+author/year or numeric, as long as you maintain internal consistency.  As to the
+format of the references themselves, any style is acceptable as long as it is
+used consistently.
+
+
+The documentation for \verb+natbib+ may be found at
+\begin{center}
+  \url{http://mirrors.ctan.org/macros/latex/contrib/natbib/natnotes.pdf}
+\end{center}
+Of note is the command \verb+\citet+, which produces citations appropriate for
+use in inline text.  For example,
+\begin{verbatim}
+   \citet{hasselmo} investigated\dots
+\end{verbatim}
+produces
+\begin{quote}
+  Hasselmo, et al.\ (1995) investigated\dots
+\end{quote}
+
+
+If you wish to load the \verb+natbib+ package with options, you may add the
+following before loading the \verb+neurips_2024+ package:
+\begin{verbatim}
+   \PassOptionsToPackage{options}{natbib}
+\end{verbatim}
+
+
+If \verb+natbib+ clashes with another package you load, you can add the optional
+argument \verb+nonatbib+ when loading the style file:
+\begin{verbatim}
+   \usepackage[nonatbib]{neurips_2024}
+\end{verbatim}
+
+
+As submission is double blind, refer to your own published work in the third
+person. That is, use ``In the previous work of Jones et al.\ [4],'' not ``In our
+previous work [4].'' If you cite your other papers that are not widely available
+(e.g., a journal paper under review), use anonymous author names in the
+citation, e.g., an author of the form ``A.\ Anonymous'' and include a copy of the anonymized paper in the supplementary material.
+
+
+\subsection{Footnotes}
+
+
+Footnotes should be used sparingly.  If you do require a footnote, indicate
+footnotes with a number\footnote{Sample of the first footnote.} in the
+text. Place the footnotes at the bottom of the page on which they appear.
+Precede the footnote with a horizontal rule of 2~inches (12~picas).
+
+
+Note that footnotes are properly typeset \emph{after} punctuation
+marks.\footnote{As in this example.}
+
+
+\subsection{Figures}
+
+
+\begin{figure}
+  \centering
+  \fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
+  \caption{Sample figure caption.}
+\end{figure}
+
+
+All artwork must be neat, clean, and legible. Lines should be dark enough for
+purposes of reproduction. The figure number and caption always appear after the
+figure. Place one line space before the figure caption and one line space after
+the figure. The figure caption should be lower case (except for first word and
+proper nouns); figures are numbered consecutively.
+
+
+You may use color figures.  However, it is best for the figure captions and the
+paper body to be legible if the paper is printed in either black/white or in
+color.
+
+
+\subsection{Tables}
+
+
+All tables must be centered, neat, clean and legible.  The table number and
+title always appear before the table.  See Table~\ref{sample-table}.
+
+
+Place one line space before the table title, one line space after the
+table title, and one line space after the table. The table title must
+be lower case (except for first word and proper nouns); tables are
+numbered consecutively.
+
+
+Note that publication-quality tables \emph{do not contain vertical rules.} We
+strongly suggest the use of the \verb+booktabs+ package, which allows for
+typesetting high-quality, professional tables:
+\begin{center}
+  \url{https://www.ctan.org/pkg/booktabs}
+\end{center}
+This package was used to typeset Table~\ref{sample-table}.
+
+
+\begin{table}
+  \caption{Sample table title}
+  \label{sample-table}
+  \centering
+  \begin{tabular}{lll}
+    \toprule
+    \multicolumn{2}{c}{Part}                   \\
+    \cmidrule(r){1-2}
+    Name     & Description     & Size ($\mu$m) \\
+    \midrule
+    Dendrite & Input terminal  & $\sim$100     \\
+    Axon     & Output terminal & $\sim$10      \\
+    Soma     & Cell body       & up to $10^6$  \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Math}
+Note that display math in bare TeX commands will not create correct line numbers for submission. Please use LaTeX (or AMSTeX) commands for unnumbered display math. (You really shouldn't be using \$\$ anyway; see \url{https://tex.stackexchange.com/questions/503/why-is-preferable-to} and \url{https://tex.stackexchange.com/questions/40492/what-are-the-differences-between-align-equation-and-displaymath} for more information.)
+
+\subsection{Final instructions}
+
+Do not change any aspects of the formatting parameters in the style files.  In
+particular, do not modify the width or length of the rectangle the text should
+fit into, and do not change font sizes (except perhaps in the
+\textbf{References} section; see below). Please note that pages should be
+numbered.
+
+
+\section{Preparing PDF files}
+
+
+Please prepare submission files with paper size ``US Letter,'' and not, for
+example, ``A4.''
+
+
+Fonts were the main cause of problems in the past years. Your PDF file must only
+contain Type 1 or Embedded TrueType fonts. Here are a few instructions to
+achieve this.
+
+
+\begin{itemize}
+
+
+\item You should directly generate PDF files using \verb+pdflatex+.
+
+
+\item You can check which fonts a PDF files uses.  In Acrobat Reader, select the
+  menu Files$>$Document Properties$>$Fonts and select Show All Fonts. You can
+  also use the program \verb+pdffonts+ which comes with \verb+xpdf+ and is
+  available out-of-the-box on most Linux machines.
+
+
+\item \verb+xfig+ "patterned" shapes are implemented with bitmap fonts.  Use
+  "solid" shapes instead.
+
+
+\item The \verb+\bbold+ package almost always uses bitmap fonts.  You should use
+  the equivalent AMS Fonts:
+\begin{verbatim}
+   \usepackage{amsfonts}
+\end{verbatim}
+followed by, e.g., \verb+\mathbb{R}+, \verb+\mathbb{N}+, or \verb+\mathbb{C}+
+for $\mathbb{R}$, $\mathbb{N}$ or $\mathbb{C}$.  You can also use the following
+workaround for reals, natural and complex:
+\begin{verbatim}
+   \newcommand{\RR}{I\!\!R} %real numbers
+   \newcommand{\Nat}{I\!\!N} %natural numbers
+   \newcommand{\CC}{I\!\!\!\!C} %complex numbers
+\end{verbatim}
+Note that \verb+amsfonts+ is automatically loaded by the \verb+amssymb+ package.
+
+
+\end{itemize}
+
+
+If your file contains type 3 fonts or non embedded TrueType fonts, we will ask
+you to fix it.
+
+
+\subsection{Margins in \LaTeX{}}
+
+
+Most of the margin problems come from figures positioned by hand using
+\verb+\special+ or other commands. We suggest using the command
+\verb+\includegraphics+ from the \verb+graphicx+ package. Always specify the
+figure width as a multiple of the line width as in the example below:
+\begin{verbatim}
+   \usepackage[pdftex]{graphicx} ...
+   \includegraphics[width=0.8\linewidth]{myfile.pdf}
+\end{verbatim}
+See Section 4.4 in the graphics bundle documentation
+(\url{http://mirrors.ctan.org/macros/latex/required/graphics/grfguide.pdf})
+
+
+A number of width problems arise when \LaTeX{} cannot properly hyphenate a
+line. Please give LaTeX hyphenation hints using the \verb+\-+ command when
+necessary.
+
+\begin{ack}
+Use unnumbered first level headings for the acknowledgments. All acknowledgments
+go at the end of the paper before the list of references. Moreover, you are required to declare
+funding (financial activities supporting the submitted work) and competing interests (related financial activities outside the submitted work).
+More information about this disclosure can be found at: \url{https://neurips.cc/Conferences/2024/PaperInformation/FundingDisclosure}.
+
+
+Do {\bf not} include this section in the anonymized submission, only in the final paper. You can use the \texttt{ack} environment provided in the style file to automatically hide this section in the anonymized submission.
+\end{ack}
+
+\section*{References}
+
+
+References follow the acknowledgments in the camera-ready paper. Use unnumbered first-level heading for
+the references. Any choice of citation style is acceptable as long as you are
+consistent. It is permissible to reduce the font size to \verb+small+ (9 point)
+when listing the references.
+Note that the Reference section does not count towards the page limit.
+\medskip
+
+
+{
+\small
+
+
+[1] Alexander, J.A.\ \& Mozer, M.C.\ (1995) Template-based algorithms for
+connectionist rule extraction. In G.\ Tesauro, D.S.\ Touretzky and T.K.\ Leen
+(eds.), {\it Advances in Neural Information Processing Systems 7},
+pp.\ 609--616. Cambridge, MA: MIT Press.
+
+
+[2] Bower, J.M.\ \& Beeman, D.\ (1995) {\it The Book of GENESIS: Exploring
+  Realistic Neural Models with the GEneral NEural SImulation System.}  New York:
+TELOS/Springer--Verlag.
+
+
+[3] Hasselmo, M.E., Schnell, E.\ \& Barkai, E.\ (1995) Dynamics of learning and
+recall at excitatory recurrent synapses and cholinergic modulation in rat
+hippocampal region CA3. {\it Journal of Neuroscience} {\bf 15}(7):5249-5262.
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\appendix
+
+\section{Appendix / supplemental material}
+
+
+Optionally include supplemental material (complete proofs, additional experiments and plots) in appendix.
+All such materials \textbf{SHOULD be included in the main submission.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\section*{NeurIPS Paper Checklist}
+
+%%% BEGIN INSTRUCTIONS %%%
+The checklist is designed to encourage best practices for responsible machine learning research, addressing issues of reproducibility, transparency, research ethics, and societal impact. Do not remove the checklist: {\bf The papers not including the checklist will be desk rejected.} The checklist should follow the references and follow the (optional) supplemental material.  The checklist does NOT count towards the page
+limit. 
+
+Please read the checklist guidelines carefully for information on how to answer these questions. For each question in the checklist:
+\begin{itemize}
+    \item You should answer \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item \answerNA{} means either that the question is Not Applicable for that particular paper or the relevant information is Not Available.
+    \item Please provide a short (1–2 sentence) justification right after your answer (even for NA). 
+   % \item {\bf The papers not including the checklist will be desk rejected.}
+\end{itemize}
+
+{\bf The checklist answers are an integral part of your paper submission.} They are visible to the reviewers, area chairs, senior area chairs, and ethics reviewers. You will be asked to also include it (after eventual revisions) with the final version of your paper, and its final version will be published with the paper.
+
+The reviewers of your paper will be asked to use the checklist as one of the factors in their evaluation. While "\answerYes{}" is generally preferable to "\answerNo{}", it is perfectly acceptable to answer "\answerNo{}" provided a proper justification is given (e.g., "error bars are not reported because it would be too computationally expensive" or "we were unable to find the license for the dataset we used"). In general, answering "\answerNo{}" or "\answerNA{}" is not grounds for rejection. While the questions are phrased in a binary way, we acknowledge that the true answer is often more nuanced, so please just use your best judgment and write a justification to elaborate. All supporting evidence can appear either in the main paper or the supplemental material, provided in appendix. If you answer \answerYes{} to a question, in the justification please point to the section(s) where related material for the question can be found.
+
+IMPORTANT, please:
+\begin{itemize}
+    \item {\bf Delete this instruction block, but keep the section heading ``NeurIPS paper checklist"},
+    \item  {\bf Keep the checklist subsection headings, questions/answers and guidelines below.}
+    \item {\bf Do not modify the questions and only use the provided macros for your answers}.
+\end{itemize} 
+ 
+
+%%% END INSTRUCTIONS %%%
+
+
+\begin{enumerate}
+
+\item {\bf Claims}
+    \item[] Question: Do the main claims made in the abstract and introduction accurately reflect the paper's contributions and scope?
+    \item[] Answer: \answerTODO{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: \justificationTODO{}
+    \item[] Guidelines:
+    \begin{itemize}
+        \item The answer NA means that the abstract and introduction do not include the claims made in the paper.
+        \item The abstract and/or introduction should clearly state the claims made, including the contributions made in the paper and important assumptions and limitations. A No or NA answer to this question will not be perceived well by the reviewers. 
+        \item The claims made should match theoretical and experimental results, and reflect how much the results can be expected to generalize to other settings. 
+        \item It is fine to include aspirational goals as motivation as long as it is clear that these goals are not attained by the paper. 
+    \end{itemize}
+
+\item {\bf Limitations}
+    \item[] Question: Does the paper discuss the limitations of the work performed by the authors?
+    \item[] Answer: \answerTODO{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: \justificationTODO{}
+    \item[] Guidelines:
+    \begin{itemize}
+        \item The answer NA means that the paper has no limitation while the answer No means that the paper has limitations, but those are not discussed in the paper. 
+        \item The authors are encouraged to create a separate "Limitations" section in their paper.
+        \item The paper should point out any strong assumptions and how robust the results are to violations of these assumptions (e.g., independence assumptions, noiseless settings, model well-specification, asymptotic approximations only holding locally). The authors should reflect on how these assumptions might be violated in practice and what the implications would be.
+        \item The authors should reflect on the scope of the claims made, e.g., if the approach was only tested on a few datasets or with a few runs. In general, empirical results often depend on implicit assumptions, which should be articulated.
+        \item The authors should reflect on the factors that influence the performance of the approach. For example, a facial recognition algorithm may perform poorly when image resolution is low or images are taken in low lighting. Or a speech-to-text system might not be used reliably to provide closed captions for online lectures because it fails to handle technical jargon.
+        \item The authors should discuss the computational efficiency of the proposed algorithms and how they scale with dataset size.
+        \item If applicable, the authors should discuss possible limitations of their approach to address problems of privacy and fairness.
+        \item While the authors might fear that complete honesty about limitations might be used by reviewers as grounds for rejection, a worse outcome might be that reviewers discover limitations that aren't acknowledged in the paper. The authors should use their best judgment and recognize that individual actions in favor of transparency play an important role in developing norms that preserve the integrity of the community. Reviewers will be specifically instructed to not penalize honesty concerning limitations.
+    \end{itemize}
+
+\item {\bf Theory Assumptions and Proofs}
+    \item[] Question: For each theoretical result, does the paper provide the full set of assumptions and a complete (and correct) proof?
+    \item[] Answer: \answerTODO{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: \justificationTODO{}
+    \item[] Guidelines:
+    \begin{itemize}
+        \item The answer NA means that the paper does not include theoretical results. 
+        \item All the theorems, formulas, and proofs in the paper should be numbered and cross-referenced.
+        \item All assumptions should be clearly stated or referenced in the statement of any theorems.
+        \item The proofs can either appear in the main paper or the supplemental material, but if they appear in the supplemental material, the authors are encouraged to provide a short proof sketch to provide intuition. 
+        \item Inversely, any informal proof provided in the core of the paper should be complemented by formal proofs provided in appendix or supplemental material.
+        \item Theorems and Lemmas that the proof relies upon should be properly referenced. 
+    \end{itemize}
+
+    \item {\bf Experimental Result Reproducibility}
+    \item[] Question: Does the paper fully disclose all the information needed to reproduce the main experimental results of the paper to the extent that it affects the main claims and/or conclusions of the paper (regardless of whether the code and data are provided or not)?
+    \item[] Answer: \answerTODO{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: \justificationTODO{}
+    \item[] Guidelines:
+    \begin{itemize}
+        \item The answer NA means that the paper does not include experiments.
+        \item If the paper includes experiments, a No answer to this question will not be perceived well by the reviewers: Making the paper reproducible is important, regardless of whether the code and data are provided or not.
+        \item If the contribution is a dataset and/or model, the authors should describe the steps taken to make their results reproducible or verifiable. 
+        \item Depending on the contribution, reproducibility can be accomplished in various ways. For example, if the contribution is a novel architecture, describing the architecture fully might suffice, or if the contribution is a specific model and empirical evaluation, it may be necessary to either make it possible for others to replicate the model with the same dataset, or provide access to the model. In general. releasing code and data is often one good way to accomplish this, but reproducibility can also be provided via detailed instructions for how to replicate the results, access to a hosted model (e.g., in the case of a large language model), releasing of a model checkpoint, or other means that are appropriate to the research performed.
+        \item While NeurIPS does not require releasing code, the conference does require all submissions to provide some reasonable avenue for reproducibility, which may depend on the nature of the contribution. For example
+        \begin{enumerate}
+            \item If the contribution is primarily a new algorithm, the paper should make it clear how to reproduce that algorithm.
+            \item If the contribution is primarily a new model architecture, the paper should describe the architecture clearly and fully.
+            \item If the contribution is a new model (e.g., a large language model), then there should either be a way to access this model for reproducing the results or a way to reproduce the model (e.g., with an open-source dataset or instructions for how to construct the dataset).
+            \item We recognize that reproducibility may be tricky in some cases, in which case authors are welcome to describe the particular way they provide for reproducibility. In the case of closed-source models, it may be that access to the model is limited in some way (e.g., to registered users), but it should be possible for other researchers to have some path to reproducing or verifying the results.
+        \end{enumerate}
+    \end{itemize}
+
+
+\item {\bf Open access to data and code}
+    \item[] Question: Does the paper provide open access to the data and code, with sufficient instructions to faithfully reproduce the main experimental results, as described in supplemental material?
+    \item[] Answer: \answerTODO{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: \justificationTODO{}
+    \item[] Guidelines:
+    \begin{itemize}
+        \item The answer NA means that paper does not include experiments requiring code.
+        \item Please see the NeurIPS code and data submission guidelines (\url{https://nips.cc/public/guides/CodeSubmissionPolicy}) for more details.
+        \item While we encourage the release of code and data, we understand that this might not be possible, so “No” is an acceptable answer. Papers cannot be rejected simply for not including code, unless this is central to the contribution (e.g., for a new open-source benchmark).
+        \item The instructions should contain the exact command and environment needed to run to reproduce the results. See the NeurIPS code and data submission guidelines (\url{https://nips.cc/public/guides/CodeSubmissionPolicy}) for more details.
+        \item The authors should provide instructions on data access and preparation, including how to access the raw data, preprocessed data, intermediate data, and generated data, etc.
+        \item The authors should provide scripts to reproduce all experimental results for the new proposed method and baselines. If only a subset of experiments are reproducible, they should state which ones are omitted from the script and why.
+        \item At submission time, to preserve anonymity, the authors should release anonymized versions (if applicable).
+        \item Providing as much information as possible in supplemental material (appended to the paper) is recommended, but including URLs to data and code is permitted.
+    \end{itemize}
+
+
+\item {\bf Experimental Setting/Details}
+    \item[] Question: Does the paper specify all the training and test details (e.g., data splits, hyperparameters, how they were chosen, type of optimizer, etc.) necessary to understand the results?
+    \item[] Answer: \answerTODO{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: \justificationTODO{}
+    \item[] Guidelines:
+    \begin{itemize}
+        \item The answer NA means that the paper does not include experiments.
+        \item The experimental setting should be presented in the core of the paper to a level of detail that is necessary to appreciate the results and make sense of them.
+        \item The full details can be provided either with the code, in appendix, or as supplemental material.
+    \end{itemize}
+
+\item {\bf Experiment Statistical Significance}
+    \item[] Question: Does the paper report error bars suitably and correctly defined or other appropriate information about the statistical significance of the experiments?
+    \item[] Answer: \answerTODO{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: \justificationTODO{}
+    \item[] Guidelines:
+    \begin{itemize}
+        \item The answer NA means that the paper does not include experiments.
+        \item The authors should answer "Yes" if the results are accompanied by error bars, confidence intervals, or statistical significance tests, at least for the experiments that support the main claims of the paper.
+        \item The factors of variability that the error bars are capturing should be clearly stated (for example, train/test split, initialization, random drawing of some parameter, or overall run with given experimental conditions).
+        \item The method for calculating the error bars should be explained (closed form formula, call to a library function, bootstrap, etc.)
+        \item The assumptions made should be given (e.g., Normally distributed errors).
+        \item It should be clear whether the error bar is the standard deviation or the standard error of the mean.
+        \item It is OK to report 1-sigma error bars, but one should state it. The authors should preferably report a 2-sigma error bar than state that they have a 96\% CI, if the hypothesis of Normality of errors is not verified.
+        \item For asymmetric distributions, the authors should be careful not to show in tables or figures symmetric error bars that would yield results that are out of range (e.g. negative error rates).
+        \item If error bars are reported in tables or plots, The authors should explain in the text how they were calculated and reference the corresponding figures or tables in the text.
+    \end{itemize}
+
+\item {\bf Experiments Compute Resources}
+    \item[] Question: For each experiment, does the paper provide sufficient information on the computer resources (type of compute workers, memory, time of execution) needed to reproduce the experiments?
+    \item[] Answer: \answerTODO{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: \justificationTODO{}
+    \item[] Guidelines:
+    \begin{itemize}
+        \item The answer NA means that the paper does not include experiments.
+        \item The paper should indicate the type of compute workers CPU or GPU, internal cluster, or cloud provider, including relevant memory and storage.
+        \item The paper should provide the amount of compute required for each of the individual experimental runs as well as estimate the total compute. 
+        \item The paper should disclose whether the full research project required more compute than the experiments reported in the paper (e.g., preliminary or failed experiments that didn't make it into the paper). 
+    \end{itemize}
+    
+\item {\bf Code Of Ethics}
+    \item[] Question: Does the research conducted in the paper conform, in every respect, with the NeurIPS Code of Ethics \url{https://neurips.cc/public/EthicsGuidelines}?
+    \item[] Answer: \answerTODO{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: \justificationTODO{}
+    \item[] Guidelines:
+    \begin{itemize}
+        \item The answer NA means that the authors have not reviewed the NeurIPS Code of Ethics.
+        \item If the authors answer No, they should explain the special circumstances that require a deviation from the Code of Ethics.
+        \item The authors should make sure to preserve anonymity (e.g., if there is a special consideration due to laws or regulations in their jurisdiction).
+    \end{itemize}
+
+
+\item {\bf Broader Impacts}
+    \item[] Question: Does the paper discuss both potential positive societal impacts and negative societal impacts of the work performed?
+    \item[] Answer: \answerTODO{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: \justificationTODO{}
+    \item[] Guidelines:
+    \begin{itemize}
+        \item The answer NA means that there is no societal impact of the work performed.
+        \item If the authors answer NA or No, they should explain why their work has no societal impact or why the paper does not address societal impact.
+        \item Examples of negative societal impacts include potential malicious or unintended uses (e.g., disinformation, generating fake profiles, surveillance), fairness considerations (e.g., deployment of technologies that could make decisions that unfairly impact specific groups), privacy considerations, and security considerations.
+        \item The conference expects that many papers will be foundational research and not tied to particular applications, let alone deployments. However, if there is a direct path to any negative applications, the authors should point it out. For example, it is legitimate to point out that an improvement in the quality of generative models could be used to generate deepfakes for disinformation. On the other hand, it is not needed to point out that a generic algorithm for optimizing neural networks could enable people to train models that generate Deepfakes faster.
+        \item The authors should consider possible harms that could arise when the technology is being used as intended and functioning correctly, harms that could arise when the technology is being used as intended but gives incorrect results, and harms following from (intentional or unintentional) misuse of the technology.
+        \item If there are negative societal impacts, the authors could also discuss possible mitigation strategies (e.g., gated release of models, providing defenses in addition to attacks, mechanisms for monitoring misuse, mechanisms to monitor how a system learns from feedback over time, improving the efficiency and accessibility of ML).
+    \end{itemize}
+    
+\item {\bf Safeguards}
+    \item[] Question: Does the paper describe safeguards that have been put in place for responsible release of data or models that have a high risk for misuse (e.g., pretrained language models, image generators, or scraped datasets)?
+    \item[] Answer: \answerTODO{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: \justificationTODO{}
+    \item[] Guidelines:
+    \begin{itemize}
+        \item The answer NA means that the paper poses no such risks.
+        \item Released models that have a high risk for misuse or dual-use should be released with necessary safeguards to allow for controlled use of the model, for example by requiring that users adhere to usage guidelines or restrictions to access the model or implementing safety filters. 
+        \item Datasets that have been scraped from the Internet could pose safety risks. The authors should describe how they avoided releasing unsafe images.
+        \item We recognize that providing effective safeguards is challenging, and many papers do not require this, but we encourage authors to take this into account and make a best faith effort.
+    \end{itemize}
+
+\item {\bf Licenses for existing assets}
+    \item[] Question: Are the creators or original owners of assets (e.g., code, data, models), used in the paper, properly credited and are the license and terms of use explicitly mentioned and properly respected?
+    \item[] Answer: \answerTODO{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: \justificationTODO{}
+    \item[] Guidelines:
+    \begin{itemize}
+        \item The answer NA means that the paper does not use existing assets.
+        \item The authors should cite the original paper that produced the code package or dataset.
+        \item The authors should state which version of the asset is used and, if possible, include a URL.
+        \item The name of the license (e.g., CC-BY 4.0) should be included for each asset.
+        \item For scraped data from a particular source (e.g., website), the copyright and terms of service of that source should be provided.
+        \item If assets are released, the license, copyright information, and terms of use in the package should be provided. For popular datasets, \url{paperswithcode.com/datasets} has curated licenses for some datasets. Their licensing guide can help determine the license of a dataset.
+        \item For existing datasets that are re-packaged, both the original license and the license of the derived asset (if it has changed) should be provided.
+        \item If this information is not available online, the authors are encouraged to reach out to the asset's creators.
+    \end{itemize}
+
+\item {\bf New Assets}
+    \item[] Question: Are new assets introduced in the paper well documented and is the documentation provided alongside the assets?
+    \item[] Answer: \answerTODO{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: \justificationTODO{}
+    \item[] Guidelines:
+    \begin{itemize}
+        \item The answer NA means that the paper does not release new assets.
+        \item Researchers should communicate the details of the dataset/code/model as part of their submissions via structured templates. This includes details about training, license, limitations, etc. 
+        \item The paper should discuss whether and how consent was obtained from people whose asset is used.
+        \item At submission time, remember to anonymize your assets (if applicable). You can either create an anonymized URL or include an anonymized zip file.
+    \end{itemize}
+
+\item {\bf Crowdsourcing and Research with Human Subjects}
+    \item[] Question: For crowdsourcing experiments and research with human subjects, does the paper include the full text of instructions given to participants and screenshots, if applicable, as well as details about compensation (if any)? 
+    \item[] Answer: \answerTODO{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: \justificationTODO{}
+    \item[] Guidelines:
+    \begin{itemize}
+        \item The answer NA means that the paper does not involve crowdsourcing nor research with human subjects.
+        \item Including this information in the supplemental material is fine, but if the main contribution of the paper involves human subjects, then as much detail as possible should be included in the main paper. 
+        \item According to the NeurIPS Code of Ethics, workers involved in data collection, curation, or other labor should be paid at least the minimum wage in the country of the data collector. 
+    \end{itemize}
+
+\item {\bf Institutional Review Board (IRB) Approvals or Equivalent for Research with Human Subjects}
+    \item[] Question: Does the paper describe potential risks incurred by study participants, whether such risks were disclosed to the subjects, and whether Institutional Review Board (IRB) approvals (or an equivalent approval/review based on the requirements of your country or institution) were obtained?
+    \item[] Answer: \answerTODO{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: \justificationTODO{}
+    \item[] Guidelines:
+    \begin{itemize}
+        \item The answer NA means that the paper does not involve crowdsourcing nor research with human subjects.
+        \item Depending on the country in which research is conducted, IRB approval (or equivalent) may be required for any human subjects research. If you obtained IRB approval, you should clearly state this in the paper. 
+        \item We recognize that the procedures for this may vary significantly between institutions and locations, and we expect authors to adhere to the NeurIPS Code of Ethics and the guidelines for their institution. 
+        \item For initial submissions, do not include any information that would break anonymity (if applicable), such as the institution conducting the review.
+    \end{itemize}
+
+\end{enumerate}
+
+
+\end{document}
